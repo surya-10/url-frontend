@@ -56,13 +56,19 @@
   gap:8px
 }
 .form{
-  width: 340px;
+  width: 400px;
   background-color: rgb(255, 252, 252);
   padding: 20px;
   border-radius: 15px;
   margin: 10px;
   box-shadow: 0px 0px 20px rgb(172, 168, 164);
   border: 1px solid grey;
+}
+@media  screen and (max-width:500px){
+  .form{
+    width: 305px;
+    padding: 25px;
+  }
 }
 label{
   text-align: left;
