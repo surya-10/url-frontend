@@ -31,7 +31,7 @@ function GeneratedLink() {
             <div className="url-cont">
                 <Base>
                     <div className="display-links">
-                        <h5 className="mt-4 mb-4">Generated Links</h5>
+                        <h5 className="mt-4 mb-4 text-white">Generated Links</h5>
                         <div className="tables">
                             <table className="table">
                                 {links.map((val, ind)=>(
