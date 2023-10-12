@@ -35,7 +35,7 @@ function GenerateUrl() {
             }
         })
         let final = await result.json()
-        setUrlValue(`https://master--legendary-mandazi-a23d41.netlify.app/${final.id}`);
+        setUrlValue(`https://url-shortner-auth.netlify.app/${final.id}`);
         setShow(true);
         setUrl(final.id);
     }
