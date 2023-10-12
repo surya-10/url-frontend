@@ -1,0 +1,127 @@
+import { useFormik } from "formik";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import * as yup from "yup";
+
+const userValidation = yup.object({
+    firstname:yup.string().required("first name cannot be empty"),
+    lastname:yup.string().required("last name cannot be empty"),
+    email:yup.string().required("email cannot be empty"),
+    password:yup.string().required("password cannot be empty")
+})
+
+function Signup(){
+    let navigate = useNavigate();
+
+    let [passwordType, setPasswordType] = useState("password");
+
+    function changeEye(){
+        if(passwordType=="password"){
+            setPasswordType("text");
+        }
+        else{
+            setPasswordType("password");
+        }
+    }
+    let {values, handleChange, handleSubmit, handleBlur, touched, errors} = useFormik({
+        initialValues:{
+            firstname:"",
+            lastname:"",
+            email:"",
+            password:""
+        },
+        validationSchema:userValidation,
+        onSubmit:(obj)=>{
+            createUser(obj);
+        }
+    })
+    async function createUser(obj){
+        let response = await fetch("https://url-backend-aenc.onrender.com/signup", {
+            method:"POST",
+            body:JSON.stringify(obj),
+            headers:{
+                "content-type":"application/json"
+            }
+        })
+        let result = await response.json();
+        if(result.status===201 && result.resp===true){
+            navigate("/notice");
+        }
+        else{
+            document.querySelector(".show-msg").style.display="flex";
+        }
+    }
+    return (
+        <div className="sign-page">
+            <div className="container-fluid cont min-vh-100 d-flex justify-content-center align-items-center flex-column">
+                
+                <div className="form">
+                <div className="signup-title-div">
+                    <p className="fs-4 fw-bold signup-title">Signup Here !</p>
+                </div>
+                    <form onSubmit={handleSubmit}>
+                    <div className="signup-form d-flex flex-column">
+                        <div className="d-flex flex-column div">
+                            <label htmlFor="firstname" className="names">Firstname</label>
+                            <input type="text" placeholder="enter firstname" id="firstname" className="form-control"
+                            name="firstname"
+                            value={values.firstname}
+                            onChange={handleChange}
+                            onBlur={handleBlur}/>
+                            <i class="fa-solid fa-user icon"></i>
+                        </div>
+                        {touched.firstname && errors.firstname ? <small className="text-danger">Firstname cannot be empty</small>:""}
+                        <div className="d-flex flex-column div">
+                            <label htmlFor="lastname" className="names">Lastname</label>
+                            <input type="text" placeholder="enter lastname" id="lastname" className="form-control"
+                            name="lastname"
+                            value={values.lastname}
+                            onChange={handleChange}
+                            onBlur={handleBlur}/>
+                            <i class="fa-solid fa-user icon"></i>
+                        </div>
+                        {touched.lastname && errors.lastname ? <small className="text-danger">Lastname cannot be empty</small>:""}
+                        <div className="d-flex flex-column div">
+                            <label htmlFor="email" className="names">Email</label>
+                            <input type="email" placeholder="enter email" id="email" className="form-control"
+                            name="email"
+                            value={values.email}
+                            onChange={handleChange}
+                            onBlur={handleBlur}/>
+                            <i class="fa-solid fa-envelope icon"></i>
+                        </div>
+                        {touched.email && errors.email ? <small className="text-danger">Email cannot be empty</small>:""}
+                        <div className="d-flex flex-column div">
+                            <label htmlFor="password" className="names">Password</label>
+                            <input type={passwordType} placeholder="enter password" id="password" className="form-control pass"
+                            name="password"
+                            value={values.password}
+                            onChange={handleChange}
+                            onBlur={handleBlur}/>
+                            <i class="fa-solid fa-lock icon"></i>
+                            <p className="para" onClick={changeEye}>
+                            {passwordType=="password"?
+                            <i class="fa-solid fa-eye-slash icon2"></i>:
+                            <i class="fa-regular fa-eye icon3"></i>
+                            
+                            
+                            }           
+                            </p>
+                        </div>
+                        {touched.password && errors.password ? <small className="text-danger">password cannot be empty</small>:""}
+                        
+                        
+                    </div>
+                    <p className="text-danger mt-3 show-msg">Your account already exist</p>
+                    <div className="btn-gtp d-flex justify-content-start">
+                        <button type="submit" className="btn text-white singupbtn mt-3">Register</button>
+                    </div>
+                    </form>
+        
+                    <small className="mt-3">Already have an account ?<span className="ms-1 text-decoration-underline lgn" onClick={()=>navigate("/login")}>Login</span></small>
+                </div>
+            </div>
+        </div>
+    )
+}
+export default Signup;
