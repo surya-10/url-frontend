@@ -37,7 +37,7 @@ function GeneratedLink() {
                                 {links.map((val, ind)=>(
                                         <tr className="tr">
                                             <td className="td"><span className="span text-info">LongUrl</span><p title="LongUrl">{val.longUrl}</p></td>
-                                            <td className="td"><span className="span text-info">ShortUrl</span><p title="shortUrl">http://localhost:3000/{val.shortID}</p></td>
+                                            <td className="td"><span className="span text-info">ShortUrl</span><p title="shortUrl">https://master--legendary-mandazi-a23d41.netlify.app/{val.shortID}</p></td>
                                         </tr>
                                 ))}
                             </table>
