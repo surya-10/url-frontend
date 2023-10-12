@@ -7,7 +7,7 @@ function ResetPassword() {
 
     async function resetPassword(id, token){
 
-        let result = await fetch(`http://localhost:9003/reset/${id}/${token}`, {
+        let result = await fetch(`https://url-backend-aenc.onrender.com/reset/${id}/${token}`, {
             method:"GET",
             headers: {
                 "content-type": "application/json"

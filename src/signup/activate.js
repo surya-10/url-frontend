@@ -6,7 +6,7 @@ function Activate() {
     verifyToken(id, token);
 
     async function resendLink(id){
-        let res = await fetch(`http://localhost:9003/resend/${id}`, {
+        let res = await fetch(`https://url-backend-aenc.onrender.com/resend/${id}`, {
             method: "GET",
             headers: {
                 "content-type": "application/json"

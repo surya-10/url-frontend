@@ -23,7 +23,7 @@ function ForgotPassword(){
         }
     })
     async function createUser(obj){
-        let response = await fetch("http://localhost:9003/forgot", {
+        let response = await fetch("https://url-backend-aenc.onrender.com/forgot", {
             method:"POST",
             body:JSON.stringify(obj),
             headers:{

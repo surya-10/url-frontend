@@ -27,7 +27,7 @@ function GenerateUrl() {
     });
 
     async function generateShortId(obj) {
-        let result = await fetch("http://localhost:9003/auth", {
+        let result = await fetch("https://url-backend-aenc.onrender.com/auth", {
             method: "POST",
             body: JSON.stringify(obj),
             headers: {
