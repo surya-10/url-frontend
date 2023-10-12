@@ -215,7 +215,7 @@ input[type=email], input[type=text]{
   color: darkgoldenrod;
 }
 .url-div{
-  background-color: #403b54;
+  background-color: rgb(181, 131, 181);
   height: 100vh;
   padding-bottom: 40px;
 }
@@ -332,7 +332,7 @@ select{
   padding: 7px;
 }
 .navbr{
-  background-color: black !important;
+  background-color: rgb(66, 65, 65) !important;
   
    border-bottom: 1px solid white;
    color: black !important;
